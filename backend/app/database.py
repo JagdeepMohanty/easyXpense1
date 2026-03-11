@@ -1,6 +1,9 @@
 from pymongo import MongoClient
-import os
+from config.config import Config
 
 def get_database():
-    client = MongoClient(os.getenv('MONGO_URI'))
-    return client.get_database()
+    if not Config.MONGO_URI:
+        raise ValueError("MONGO_URI environment variable is not set")
+    
+    client = MongoClient(Config.MONGO_URI)
+    return client['easyxpense']

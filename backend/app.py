@@ -10,12 +10,28 @@ from routes.debts import debts_bp
 from routes.settlements import settlements_bp
 from routes.analytics import analytics_bp
 from config.config import Config
+import os
 
+# Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)
+# Validate required environment variables
+if not Config.MONGO_URI:
+    raise ValueError("MONGO_URI environment variable is required")
+if not Config.JWT_SECRET:
+    raise ValueError("JWT_SECRET environment variable is required")
 
+app = Flask(__name__)
+
+# Configure CORS for production and development
+allowed_origins = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://easyxpense.netlify.app'
+]
+CORS(app, origins=allowed_origins, supports_credentials=True)
+
+# Register blueprints
 app.register_blueprint(health_bp, url_prefix='/api')
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
 app.register_blueprint(friends_bp, url_prefix='/api/friends')
@@ -26,4 +42,6 @@ app.register_blueprint(settlements_bp, url_prefix='/api/settlements')
 app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=Config.PORT)
+    port = Config.PORT
+    debug = os.getenv('FLASK_ENV') != 'production'
+    app.run(debug=debug, host='0.0.0.0', port=port)

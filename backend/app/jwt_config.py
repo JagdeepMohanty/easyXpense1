@@ -1,3 +1,6 @@
-import os
+from config.config import Config
 
-JWT_SECRET = os.getenv('JWT_SECRET', 'supersecretkey')
+if not Config.JWT_SECRET:
+    raise ValueError("JWT_SECRET environment variable is not set")
+
+JWT_SECRET = Config.JWT_SECRET

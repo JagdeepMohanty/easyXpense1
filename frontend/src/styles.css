@@ -1,0 +1,500 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background-color: #020617;
+  color: #E2E8F0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #10B981;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #0F172A;
+  border-radius: 12px;
+  padding: 30px;
+  min-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #34D399;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 16px;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #E2E8F0;
+}
+
+.form-input {
+  padding: 12px 16px;
+  background-color: #020617;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #E2E8F0;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #10B981;
+  color: #020617;
+}
+
+.btn-primary:hover {
+  background-color: #34D399;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-secondary {
+  background-color: #334155;
+  color: #E2E8F0;
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
+  transform: translateY(-2px);
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.error-text {
+  color: #EF4444;
+  font-size: 14px;
+  margin: -8px 0;
+}
+
+.success-text {
+  color: #10B981;
+  font-size: 14px;
+  margin: -8px 0;
+}
+
+.form-footer {
+  text-align: center;
+  color: #94A3B8;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.link {
+  color: #10B981;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: #34D399;
+  text-decoration: underline;
+}
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #020617;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.friend-item:hover {
+  border-color: #10B981;
+  transform: translateX(4px);
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.friend-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.friend-email {
+  font-size: 14px;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.groups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #020617;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.group-item:hover {
+  border-color: #10B981;
+  transform: translateX(4px);
+}
+
+.group-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.group-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.group-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #334155;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #34D399;
+  margin-bottom: 12px;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #020617;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.member-email {
+  font-size: 14px;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.checkbox-label:hover {
+  background-color: #1E293B;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #10B981;
+}
+
+.checkbox-text {
+  font-size: 16px;
+  color: #E2E8F0;
+}
+
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.expense-item {
+  padding: 16px;
+  background-color: #020617;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.expense-item:hover {
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
+
+.expense-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expense-description {
+  font-size: 18px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.expense-details {
+  font-size: 14px;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.expense-split {
+  font-size: 14px;
+  color: #34D399;
+  font-weight: 600;
+  margin: 0;
+}
+
+.expense-participants {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+select.form-input {
+  cursor: pointer;
+}
+
+.debt-section {
+  margin-top: 20px;
+}
+
+.debt-section:first-child {
+  margin-top: 0;
+}
+
+.debt-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #34D399;
+  margin-bottom: 12px;
+}
+
+.debt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.debt-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.debt-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.debt-owe {
+  background-color: #1E1B2E;
+  border-color: #EF4444;
+}
+
+.debt-owe:hover {
+  border-color: #F87171;
+}
+
+.debt-owed {
+  background-color: #1A2E1E;
+  border-color: #10B981;
+}
+
+.debt-owed:hover {
+  border-color: #34D399;
+}
+
+.debt-text {
+  font-size: 16px;
+  color: #E2E8F0;
+}
+
+.debt-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #10B981;
+}
+
+.debt-owe .debt-amount {
+  color: #EF4444;
+}
+
+.debt-empty {
+  font-size: 14px;
+  color: #94A3B8;
+  font-style: italic;
+  margin: 0;
+}
+
+.settlements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.settlement-item {
+  padding: 16px;
+  background-color: #020617;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.settlement-item:hover {
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
+
+.settlement-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settlement-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin: 0;
+}
+
+.settlement-details {
+  font-size: 14px;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.settlement-date {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}

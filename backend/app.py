@@ -31,6 +31,16 @@ allowed_origins = [
 ]
 CORS(app, origins=allowed_origins, supports_credentials=True)
 
+# Root route for production
+@app.route("/")
+def home():
+    return {"message": "EasyXpense API running"}
+
+# Direct health check route
+@app.route("/api/health")
+def health():
+    return {"status": "ok"}
+
 # Register blueprints
 app.register_blueprint(health_bp, url_prefix='/api')
 app.register_blueprint(auth_bp, url_prefix='/api/auth')

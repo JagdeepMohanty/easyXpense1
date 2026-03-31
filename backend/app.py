@@ -28,7 +28,7 @@ def home():
 def health():
     try:
         # Test database connection
-        from database import get_db
+        from backend.database import get_db
         db = get_db()
         db.command('ping')
         return {"status": "ok", "database": "connected"}
@@ -38,17 +38,23 @@ def health():
 # SAFE LAZY IMPORTS (CRITICAL)
 def register_routes():
     try:
-        from routes.auth import auth_bp
-        from routes.friends import friends_bp
-        from routes.groups import groups_bp
-        from routes.expenses import expenses_bp
+        from backend.routes.auth import auth_bp
+        from backend.routes.friends import friends_bp
+        from backend.routes.groups import groups_bp
+        from backend.routes.expenses import expenses_bp
+        from backend.routes.settlements import settlements_bp
+        from backend.routes.debts import debts_bp
+        from backend.routes.analytics import analytics_bp
 
         app.register_blueprint(auth_bp, url_prefix="/api/auth")
         app.register_blueprint(friends_bp, url_prefix="/api/friends")
         app.register_blueprint(groups_bp, url_prefix="/api/groups")
         app.register_blueprint(expenses_bp, url_prefix="/api/expenses")
+        app.register_blueprint(settlements_bp, url_prefix="/api/settlements")
+        app.register_blueprint(debts_bp, url_prefix="/api/debts")
+        app.register_blueprint(analytics_bp, url_prefix="/api/analytics")
 
-        print("Routes registered successfully")
+        print("All routes loaded")
 
     except Exception as e:
         print("Route import error:", e)

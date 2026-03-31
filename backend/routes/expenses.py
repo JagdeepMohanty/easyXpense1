@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from auth_middleware import token_required
+from backend.jwt_utils import token_required
 
 expenses_bp = Blueprint('expenses', __name__)
 

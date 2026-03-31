@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from auth_middleware import token_required
+from backend.jwt_utils import token_required
 
 friends_bp = Blueprint('friends', __name__)
 

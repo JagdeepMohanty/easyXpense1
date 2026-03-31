@@ -249,8 +249,9 @@ const Home = ({ user: propUser, onLogout: propOnLogout }) => {
             </div>
           }
         />
-      </>
-    );
-  };
+      )}
+    </>
+  );
+};
 
 export default Home;

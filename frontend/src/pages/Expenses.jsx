@@ -4,13 +4,8 @@ import { Card, Button, Input, Alert, EmptyState, LoadingSpinner, ExpenseCard, Pa
 import api from '../services/api';
 
 const Expenses = () => {
+  const navigate = useNavigate();
   const [groups, setGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState('');
-  const [groupMembers, setGroupMembers] = useState([]);
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
-  const [paidBy, setPaidBy] = useState('');
-  const [participants, setParticipants] = useState([]);
   const [groupExpenses, setGroupExpenses] = useState([]);
   const [userExpenses, setUserExpenses] = useState([]);
   const [message, setMessage] = useState('');
@@ -40,17 +35,6 @@ const Expenses = () => {
     }
   };
 
-  const fetchGroupDetails = async (groupId) => {
-    try {
-      const response = await api.get(`/groups/${groupId}`);
-      setGroupMembers(response.data.members);
-      setPaidBy('');
-      setParticipants([]);
-    } catch (err) {
-      console.error('Error fetching group details:', err);
-    }
-  };
-
   const fetchGroupExpenses = async (groupId) => {
     try {
       const response = await api.get(`/expenses/groups/${groupId}`);
@@ -67,25 +51,6 @@ const Expenses = () => {
     } catch (err) {
       console.error('Error fetching user expenses:', err);
     }
-  };
-
-  const handleGroupChange = (groupId) => {
-    setSelectedGroup(groupId);
-    if (groupId) {
-      fetchGroupDetails(groupId);
-      fetchGroupExpenses(groupId);
-    } else {
-      setGroupMembers([]);
-      setGroupExpenses([]);
-    }
-  };
-
-  const handleParticipantToggle = (memberId) => {
-    setParticipants(prev => 
-      prev.includes(memberId) 
-        ? prev.filter(id => id !== memberId)
-        : [...prev, memberId]
-    );
   };
 
   const handleCreateExpense = async (formData) => {
@@ -400,9 +365,9 @@ const Expenses = () => {
         )}
       </Card>
 
-      {selectedGroup && groupExpenses.length > 0 && (
+      {groupExpenses.length > 0 && (
         <Card>
-          <h2 className="card-title">Group Expenses ({groupExpenses.length})</h2>
+          <h2 className="card-title">Recent Group Expenses ({groupExpenses.length})</h2>
           <div className="expenses-list">
             {groupExpenses.map((expense) => (
               <ExpenseCard 

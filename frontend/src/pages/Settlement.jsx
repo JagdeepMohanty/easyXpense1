@@ -4,11 +4,9 @@ import { Card, Button, Input, Alert, EmptyState, LoadingSpinner, DebtCard, Money
 import api from '../services/api';
 
 const Settlement = () => {
+  const navigate = useNavigate();
   const [debts, setDebts] = useState({ you_owe: [], you_are_owed: [] });
   const [groups, setGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState('');
-  const [receiverId, setReceiverId] = useState('');
-  const [amount, setAmount] = useState('');
   const [settlements, setSettlements] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');

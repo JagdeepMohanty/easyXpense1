@@ -71,10 +71,6 @@ const Friends = () => {
     }
   };
 
-  const handleBackHome = () => {
-    navigate('/');
-  };
-
   if (pageLoading) {
     return (
       <>

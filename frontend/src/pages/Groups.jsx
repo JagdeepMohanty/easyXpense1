@@ -84,10 +84,6 @@ const Groups = () => {
     }
   };
 
-  const handleBackHome = () => {
-    navigate('/');
-  };
-
   if (pageLoading) {
     return (
       <>

@@ -1,47 +1,31 @@
 from flask import Blueprint, request, jsonify
 import bcrypt
-import logging
 from bson import ObjectId
-from database import get_database
-from auth_middleware import generate_token, token_required
+from database import get_db
+from jwt_utils import generate_token, token_required
 
-logger = logging.getLogger(__name__)
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
-    """User registration with comprehensive error handling"""
     try:
         data = request.get_json()
         
-        if not data:
-            return jsonify({'error': 'No data provided'}), 400
-        
-        # Validate required fields
-        required_fields = ['name', 'email', 'password']
-        for field in required_fields:
-            if field not in data or not data[field]:
-                return jsonify({'error': f'{field} is required'}), 400
+        if not data or not all(k in data for k in ['name', 'email', 'password']):
+            return jsonify({'error': 'Missing required fields'}), 400
         
         name = data['name'].strip()
         email = data['email'].strip().lower()
         password = data['password']
         
-        # Basic validation
         if len(password) < 6:
             return jsonify({'error': 'Password must be at least 6 characters'}), 400
         
-        if '@' not in email:
-            return jsonify({'error': 'Invalid email format'}), 400
-        
-        # Get database
-        db = get_database()
-        if not db:
-            return jsonify({'error': 'Database connection failed'}), 503
+        # Get database safely
+        db = get_db()
         
         # Check if user exists
-        existing_user = db.users.find_one({'email': email})
-        if existing_user:
+        if db.users.find_one({'email': email}):
             return jsonify({'error': 'User already exists'}), 409
         
         # Hash password
@@ -51,8 +35,7 @@ def register():
         user_data = {
             'name': name,
             'email': email,
-            'password': hashed_password,
-            'created_at': ObjectId().generation_time
+            'password': hashed_password
         }
         
         result = db.users.insert_one(user_data)
@@ -62,8 +45,6 @@ def register():
         token = generate_token(user_id)
         if not token:
             return jsonify({'error': 'Token generation failed'}), 500
-        
-        logger.info(f"User registered successfully: {email}")
         
         return jsonify({
             'message': 'User registered successfully',
@@ -76,29 +57,21 @@ def register():
         }), 201
         
     except Exception as e:
-        logger.error(f"Registration error: {str(e)}")
-        return jsonify({'error': 'Registration failed'}), 500
+        return jsonify({'error': 'Registration failed', 'details': str(e)}), 500
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    """User login with comprehensive error handling"""
     try:
         data = request.get_json()
         
-        if not data:
-            return jsonify({'error': 'No data provided'}), 400
-        
-        # Validate required fields
-        if 'email' not in data or 'password' not in data:
-            return jsonify({'error': 'Email and password are required'}), 400
+        if not data or not all(k in data for k in ['email', 'password']):
+            return jsonify({'error': 'Email and password required'}), 400
         
         email = data['email'].strip().lower()
         password = data['password']
         
-        # Get database
-        db = get_database()
-        if not db:
-            return jsonify({'error': 'Database connection failed'}), 503
+        # Get database safely
+        db = get_db()
         
         # Find user
         user = db.users.find_one({'email': email})
@@ -114,8 +87,6 @@ def login():
         if not token:
             return jsonify({'error': 'Token generation failed'}), 500
         
-        logger.info(f"User logged in successfully: {email}")
-        
         return jsonify({
             'message': 'Login successful',
             'token': token,
@@ -127,18 +98,14 @@ def login():
         }), 200
         
     except Exception as e:
-        logger.error(f"Login error: {str(e)}")
-        return jsonify({'error': 'Login failed'}), 500
+        return jsonify({'error': 'Login failed', 'details': str(e)}), 500
 
 @auth_bp.route('/me', methods=['GET'])
 @token_required
 def get_current_user(current_user_id):
-    """Get current user information"""
     try:
-        # Get database
-        db = get_database()
-        if not db:
-            return jsonify({'error': 'Database connection failed'}), 503
+        # Get database safely
+        db = get_db()
         
         # Find user
         user = db.users.find_one({'_id': ObjectId(current_user_id)})
@@ -154,5 +121,4 @@ def get_current_user(current_user_id):
         }), 200
         
     except Exception as e:
-        logger.error(f"Get user error: {str(e)}")
-        return jsonify({'error': 'Failed to get user information'}), 500
+        return jsonify({'error': 'Failed to get user', 'details': str(e)}), 500

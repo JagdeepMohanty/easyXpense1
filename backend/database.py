@@ -7,11 +7,6 @@ db = None
 def get_db():
     global client, db
     if db is None:
-        uri = os.getenv("MONGO_URI")
-        if not uri:
-            raise Exception("MONGO_URI missing")
-
-        client = MongoClient(uri)
+        client = MongoClient(os.getenv("MONGO_URI"))
         db = client["easyxpense"]
-
     return db

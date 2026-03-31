@@ -1,0 +1,152 @@
+/* FormWizard Component Styles */
+
+.form-wizard {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border-primary);
+}
+
+.form-wizard__progress {
+  margin-bottom: var(--space-8);
+}
+
+.form-wizard__progress-bar {
+  height: 4px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-6);
+  overflow: hidden;
+}
+
+.form-wizard__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-600));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.form-wizard__steps {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.form-wizard__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.form-wizard__step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid var(--color-border-primary);
+  transition: all var(--transition-base);
+}
+
+.form-wizard__step--active .form-wizard__step-number {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-500);
+}
+
+.form-wizard__step--current .form-wizard__step-number {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.form-wizard__step-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
+
+.form-wizard__step--active .form-wizard__step-label {
+  color: var(--color-text-primary);
+}
+
+.form-wizard__step--current .form-wizard__step-label {
+  color: var(--color-primary-500);
+  font-weight: var(--font-weight-semibold);
+}
+
+.form-wizard__content {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wizard__header {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.form-wizard__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--line-height-tight);
+}
+
+.form-wizard__description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.form-wizard__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .form-wizard {
+    padding: var(--space-4);
+  }
+
+  .form-wizard__steps {
+    gap: var(--space-2);
+  }
+
+  .form-wizard__step-number {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs);
+  }
+
+  .form-wizard__step-label {
+    font-size: 10px;
+  }
+
+  .form-wizard__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .form-wizard__description {
+    font-size: var(--font-size-sm);
+  }
+
+  .form-wizard__content {
+    min-height: 300px;
+  }
+}

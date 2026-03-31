@@ -1,0 +1,96 @@
+/* LoadingSpinner Component Styles */
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(2, 6, 23, 0.8);
+  z-index: var(--z-modal);
+  backdrop-filter: blur(2px);
+}
+
+.loading-spinner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.loading-spinner__circle {
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner__inner {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+}
+
+/* Sizes */
+.loading-spinner--sm .loading-spinner__circle {
+  width: 16px;
+  height: 16px;
+}
+
+.loading-spinner--base .loading-spinner__circle {
+  width: 24px;
+  height: 24px;
+}
+
+.loading-spinner--lg .loading-spinner__circle {
+  width: 32px;
+  height: 32px;
+}
+
+.loading-spinner--xl .loading-spinner__circle {
+  width: 48px;
+  height: 48px;
+}
+
+/* Variants */
+.loading-spinner--primary {
+  color: var(--color-primary-500);
+}
+
+.loading-spinner--secondary {
+  color: var(--color-secondary-500);
+}
+
+.loading-spinner--white {
+  color: var(--color-text-primary);
+}
+
+.loading-spinner__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+}
+
+.loading-spinner--overlay .loading-spinner__text {
+  color: var(--color-text-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

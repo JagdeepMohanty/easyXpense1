@@ -1,0 +1,102 @@
+/* Layout Component Styles */
+
+.layout {
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+.layout__main {
+  min-height: 100vh;
+  padding-top: 60px; /* Mobile header height */
+  transition: margin-left var(--transition-base);
+}
+
+.layout__main--with-nav {
+  /* Mobile: no margin, content flows under header */
+  margin-left: 0;
+}
+
+.layout__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  width: 100%;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .layout__main {
+    padding-top: 0;
+  }
+
+  .layout__main--with-nav {
+    margin-left: 280px; /* Sidebar width */
+  }
+
+  .layout__content {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+/* Grid System */
+.layout-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.layout-grid--1 {
+  grid-template-columns: 1fr;
+}
+
+.layout-grid--2 {
+  grid-template-columns: 1fr;
+}
+
+.layout-grid--3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .layout-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Section Spacing */
+.layout-section {
+  margin-bottom: var(--space-8);
+}
+
+.layout-section:last-child {
+  margin-bottom: 0;
+}
+
+.layout-section--compact {
+  margin-bottom: var(--space-6);
+}
+
+/* Container Variants */
+.layout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.layout-container--narrow {
+  max-width: 800px;
+}
+
+.layout-container--wide {
+  max-width: 1400px;
+}
+
+.layout-container--full {
+  max-width: none;
+  padding: 0;
+}

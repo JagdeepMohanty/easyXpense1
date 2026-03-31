@@ -1,0 +1,91 @@
+/* Money Component Styles */
+
+.money {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+}
+
+.money__sign {
+  margin-right: 0.125em;
+}
+
+.money__currency {
+  margin-right: 0.25em;
+  font-weight: var(--font-weight-medium);
+}
+
+.money__amount {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Sizes */
+.money--sm {
+  font-size: var(--font-size-sm);
+}
+
+.money--base {
+  font-size: var(--font-size-base);
+}
+
+.money--lg {
+  font-size: var(--font-size-lg);
+}
+
+.money--xl {
+  font-size: var(--font-size-xl);
+}
+
+.money--2xl {
+  font-size: var(--font-size-2xl);
+}
+
+/* Variants */
+.money--default {
+  color: var(--color-text-primary);
+}
+
+.money--positive {
+  color: var(--color-success-500);
+}
+
+.money--negative {
+  color: var(--color-danger-500);
+}
+
+.money--owe {
+  color: var(--color-danger-500);
+}
+
+.money--owed {
+  color: var(--color-success-500);
+}
+
+.money--neutral {
+  color: var(--color-text-secondary);
+}
+
+.money--emphasis {
+  color: var(--color-primary-500);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Special styling for large amounts */
+.money--lg .money__amount,
+.money--xl .money__amount,
+.money--2xl .money__amount {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .money--2xl {
+    font-size: var(--font-size-xl);
+  }
+  
+  .money--xl {
+    font-size: var(--font-size-lg);
+  }
+}

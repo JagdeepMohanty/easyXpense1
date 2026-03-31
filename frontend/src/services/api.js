@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({
+const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
   timeout: 10000,
   headers: {
@@ -9,7 +9,7 @@ const api = axios.create({
 });
 
 // Request interceptor
-api.interceptors.request.use(
+API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('easyxpense_token');
     if (token) {
@@ -24,7 +24,7 @@ api.interceptors.request.use(
 );
 
 // Response interceptor
-api.interceptors.response.use(
+API.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -41,4 +41,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default API;

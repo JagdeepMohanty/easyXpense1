@@ -5,11 +5,15 @@ import os
 app = Flask(__name__)
 
 # FIX CORS - specific origins
-CORS(app, origins=["http://localhost:5173", "https://easyxpense.netlify.app"])
+CORS(app, origins=[
+    "http://localhost:5173",
+    "https://easyxpense.netlify.app"
+])
 
 # GLOBAL ERROR HANDLER
 @app.errorhandler(Exception)
 def handle_error(e):
+    print("ERROR:", e)
     return {"error": str(e)}, 500
 
 @app.errorhandler(404)
@@ -31,9 +35,10 @@ def health():
         from backend.database import get_db
         db = get_db()
         db.command('ping')
-        return {"status": "ok", "database": "connected"}
+        return {"status": "ok", "database": "connected"}, 200
     except Exception as e:
-        return {"status": "ok", "database": "disconnected", "error": str(e)}
+        print("Health check error:", str(e))
+        return {"status": "ok", "database": "disconnected", "error": str(e)}, 200
 
 # SAFE LAZY IMPORTS (CRITICAL)
 def register_routes():
@@ -54,10 +59,10 @@ def register_routes():
         app.register_blueprint(debts_bp, url_prefix="/api/debts")
         app.register_blueprint(analytics_bp, url_prefix="/api/analytics")
 
-        print("All routes loaded")
+        print("All routes loaded successfully")
 
     except Exception as e:
-        print("Route import error:", e)
+        print("Route import error:", str(e))
         print("Running with basic routes only")
 
 register_routes()
